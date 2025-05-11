@@ -1,0 +1,80 @@
+/* CSS Reset */
+
+:root {
+  --widthCube: 100px;
+  --heightCube: 100px;
+  --translateCube: calc(var(--widthCube) / 2);
+  --counterTranslateCube: calc(var(--widthCube) / -2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #000;
+}
+
+/* Style */
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.cube {
+  width: var(--widthCube);
+  height: var(--heightCube);
+  transform-style: preserve-3d;
+  position: absolute;
+  transform: rotateY(0deg);
+  animation: spin 5s linear infinite;
+}
+
+.face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border: 2px solid #fff;
+  border-radius: 5px;
+}
+
+/* Faces */
+
+.face.front {
+  transform: translateZ(var(--translateCube));
+}
+
+.face.back {
+  transform: translateZ(var(--counterTranslateCube));
+}
+
+.face.right {
+  transform: translateX(var(--translateCube)) rotateY(90deg);
+}
+
+.face.left {
+  transform: translateX(var(--counterTranslateCube)) rotateY(90deg);
+}
+
+.face.top {
+  transform: translateY(var(--counterTranslateCube)) rotateX(90deg);
+}
+
+.face.bottom {
+  transform: translateY(var(--translateCube)) rotateX(90deg);
+}
+
+/* Animation */
+
+@keyframes spin {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
